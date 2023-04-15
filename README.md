@@ -10,12 +10,12 @@ To install the Command Executor plugin, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-repo/command-executor.git
+   git clone https://github.com/gracelungu/ShellWiz.git
    ```
 
 2. Change to the project directory:
    ```
-   cd command-executor
+   cd ShellWiz
    ```
 
 3. Install the dependencies:
@@ -73,4 +73,4 @@ This will run the test suite and display the results.
 
 ## Contact
 
-For support or inquiries, please contact: support@command-executor.vercel.app
+For support or inquiries, please contact: support@ShellWiz.vercel.app
