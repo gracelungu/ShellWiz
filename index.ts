@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
 import { exec } from "child_process";
+import { executeCommand } from "./controllers/execController";
+import { fetchFigmaFiles, fetchPageInfo } from "./controllers/figmaController";
 
 export const app = express();
 app.use(cors());
@@ -18,19 +20,14 @@ interface ExecRequestBody {
   command: string;
 }
 
-// Execute terminal commands
-app.post("/exec", (req: Request, res: Response) => {
-  const { command } = req.body as ExecRequestBody;
-  exec(command, (error: unknown, stdout: string, stderr: string) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      // Send the full error message along with stderr
-      res.status(500).send({ error: error.toString(), stderr });
-      return;
-    }
-    res.send({ stdout, stderr });
-  });
-});
+// Route to execute terminal commands
+app.post("/exec", executeCommand);
+
+// New route to retrieve a list of Figma files
+app.get("/figma-files", fetchFigmaFiles);
+
+// New route to retrieve the pages of a specific Figma file
+app.get("/figma-pages/:fileKey/:pageId", fetchPageInfo);
 
 // Define the starting port number
 const START_PORT = process.env.PORT ? parseInt(process.env.PORT) : 9001;

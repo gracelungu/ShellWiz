@@ -39,7 +39,37 @@ The server will start running on the specified port (default is 9001).
 
 ## API
 
-The plugin exposes a `POST /exec` endpoint that allows users to execute terminal commands and receive the results. The endpoint expects a request body with a `command` property, executes the command using the `child_process` module, and returns the `stdout` and `stderr` results.
+The plugin exposes the following endpoints:
+
+### POST /exec
+
+Execute a terminal command and receive the results.
+
+- Request Body:
+- `command`: The command to be executed in the terminal (string).
+
+- Response:
+- `stdout`: The standard output of the executed command.
+- `stderr`: The standard error output of the executed command.
+
+### GET /figma-files
+
+Retrieve a list of Figma files.
+
+- Response:
+- An array of Figma files.
+
+### GET /figma-pages/{fileKey}/{pageId}
+
+Retrieve the pages of a specific Figma file.
+
+- Path Parameters:
+- `fileKey`: The file key of the Figma file (string).
+- `pageId`: The ID of the page to retrieve (string).
+
+- Response:
+- Information about the specified Figma page.
+
 
 ## Usage
 
