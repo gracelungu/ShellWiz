@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Command Executor API
+  version: 1.0.0
+servers:
+  - url: http://localhost:9001
+paths:
+  /exec:
+    post:
+      summary: Execute a command in the terminal
+      operationId: renderPage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - command
+              properties:
+                command:
+                  type: string
+                  example: echo Hello, world!
+      responses:
+        200:
+          description: Command executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: stdout
+                  message:
+                    type: string
+                    example: Hello, world!\n

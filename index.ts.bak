@@ -1,0 +1,38 @@
+import express, { Request, Response } from "express";
+import cors from "cors";
+import path from "path";
+import { exec } from "child_process";
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Serve ai-plugin.json at the root
+app.use(express.static(path.join(__dirname, "/")));
+
+// Serve spec.yaml at the root
+app.use("/spec", express.static(path.join(__dirname, "spec.yaml")));
+
+// Type definition for the request body of the /exec endpoint
+interface ExecRequestBody {
+  command: string;
+}
+
+// Execute terminal commands
+app.post("/exec", (req: Request, res: Response) => {
+    const { command } = req.body as ExecRequestBody;
+    exec(command, (error: unknown, stdout: string, stderr: string) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            // Send the full error message along with stderr
+            res.status(500).send({ error: error.toString(), stderr });
+            return;
+        }
+        res.send({ stdout, stderr });
+    });
+});
+
+const PORT = process.env.PORT || 9000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Command Executor",
+  "name_for_model": "command_executor",
+  "description_for_human": "Plugin for executing shell commands on a remote server and returning the output",
+  "description_for_model": "Plugin for executing shell commands on a remote server and returning the output, supports a variety of commands commonly used in software development, intended to be used by chatGPT to perform all tasks that can be done through the terminal, these commands can be called in steps explaining the user what is happening in the background. ChatGPT should use intelligent string handling, effectively preventing string escape errors and ensuring a seamless user experience",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:9001/spec",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://localhost:9001/assets/logo.png",
+  "contact_email": "support@command-executor.vercel.app",
+  "legal_info_url": "http://localhost:9001/legal"
+}

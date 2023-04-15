@@ -1,0 +1,25 @@
+{
+    "family": "dev-gpt-task",
+    "containerDefinitions": [
+      {
+        "name": "dev-gpt",
+        "image": "987959630627.dkr.ecr.eu-north-1.amazonaws.com/dev-gpt:latest",
+        "portMappings": [
+          {
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true
+      }
+    ],
+    "executionRoleArn": "arn:aws:iam::987959630627:role/ecsTaskExecutionRole",
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "memory": "512"
+  }
+  
