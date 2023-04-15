@@ -1,4 +1,4 @@
-# Command Executor
+# ShellWiz
 
 ## Overview
 
