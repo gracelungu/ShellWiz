@@ -72,6 +72,23 @@ The response will contain the `stdout` and `stderr` results of the executed comm
 }
 ```
 
+## Working Directory Feature
+
+### Overview
+
+The "Working Directory" feature allows you to specify a default directory in which all shell commands will be executed. This is useful for cases where you want to consistently execute commands within a specific directory.
+
+### Configuration
+
+To configure the working directory, you need to set the `WORKING_DIR` environment variable to the desired directory path. You can do this by adding the following line to your `.env` file:
+
+```
+WORKING_DIR=/path/to/working/directory
+```
+
+Replace `/path/to/working/directory` with the actual path to the directory you want to use as the working directory. Once the `WORKING_DIR` environment variable is set, the application will automatically change to this directory before executing any shell commands.
+
+
 ## Running Tests
 
 To run the tests for the Command Executor plugin, use the following command:
