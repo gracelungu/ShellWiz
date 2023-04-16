@@ -52,25 +52,6 @@ Execute a terminal command and receive the results.
 - `stdout`: The standard output of the executed command.
 - `stderr`: The standard error output of the executed command.
 
-### GET /figma-files
-
-Retrieve a list of Figma files.
-
-- Response:
-- An array of Figma files.
-
-### GET /figma-pages/{fileKey}/{pageId}
-
-Retrieve the pages of a specific Figma file.
-
-- Path Parameters:
-- `fileKey`: The file key of the Figma file (string).
-- `pageId`: The ID of the page to retrieve (string).
-
-- Response:
-- Information about the specified Figma page.
-
-
 ## Usage
 
 To execute a command, send a POST request to the `/exec` endpoint with the command to be executed in the request body:

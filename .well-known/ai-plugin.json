@@ -3,7 +3,7 @@
   "name_for_human": "Command Executor",
   "name_for_model": "command_executor",
   "description_for_human": "Plugin for executing shell commands on a remote server and returning the output",
-  "description_for_model": "Plugin for executing shell commands on a remote server and returning the output, supports a variety of commands commonly used in software development, intended to be used by chatGPT to perform all tasks that can be done through the terminal, these commands can be called in steps explaining the user what is happening in the background. ChatGPT should use intelligent string handling, effectively preventing string escape errors and ensuring a seamless user experience",
+  "description_for_model": "Plugin for executing shell commands on a remote server and returning the output, supports a variety of commands commonly used in software development, intended to be used by chatGPT to perform all tasks that can be done through the terminal, these commands can be called in steps explaining the user what is happening in the background. ChatGPT should use intelligent string handling, effectively preventing string escape errors and ensuring a seamless user experience. If a command fails ChatGPT should attempt an alternative command",
   "auth": {
     "type": "none"
   },
