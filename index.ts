@@ -1,9 +1,10 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import path from "path";
-import { exec } from "child_process";
+import dotenv from 'dotenv';
 import { executeCommand } from "./controllers/execController";
-import { fetchFigmaFiles, fetchPageInfo } from "./controllers/figmaController";
+
+dotenv.config();
 
 export const app = express();
 app.use(cors());
@@ -15,19 +16,8 @@ app.use(express.static(path.join(__dirname, "/")));
 // Serve spec.yaml at the root
 app.use("/spec", express.static(path.join(__dirname, "spec.yaml")));
 
-// Type definition for the request body of the /exec endpoint
-interface ExecRequestBody {
-  command: string;
-}
-
 // Route to execute terminal commands
 app.post("/exec", executeCommand);
-
-// New route to retrieve a list of Figma files
-app.get("/figma-files", fetchFigmaFiles);
-
-// New route to retrieve the pages of a specific Figma file
-app.get("/figma-pages/:fileKey/:pageId", fetchPageInfo);
 
 // Define the starting port number
 const START_PORT = process.env.PORT ? parseInt(process.env.PORT) : 9001;

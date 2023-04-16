@@ -35,34 +35,3 @@ paths:
                   message:
                     type: string
                     example: Hello, world!\n
-    get:
-      summary: Retrieve a list of Figma files
-      responses:
-        200:
-          description: Successfully retrieved Figma files
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-    get:
-      summary: Retrieve the pages of a specific Figma file
-      parameters:
-        - name: fileKey
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: pageId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: Successfully retrieved Figma page information
-          content:
-            application/json:
-              schema:
-                type: object

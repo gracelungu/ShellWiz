@@ -9,7 +9,9 @@ interface ExecRequestBody {
 // Execute terminal commands
 export const executeCommand = (req: Request, res: Response) => {
   const { command } = req.body as ExecRequestBody;
-  exec(command, (error: unknown, stdout: string, stderr: string) => {
+  const workingDir = process.env.WORKING_DIR || ".";
+  const fullCommand = `cd ${workingDir} && ${command}`;
+  exec(fullCommand, (error: unknown, stdout: string, stderr: string) => {
     if (error) {
       console.error(`exec error: ${error}`);
       // Send the full error message along with stderr
