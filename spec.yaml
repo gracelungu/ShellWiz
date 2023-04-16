@@ -35,7 +35,6 @@ paths:
                   message:
                     type: string
                     example: Hello, world!\n
-  /figma-files:
     get:
       summary: Retrieve a list of Figma files
       responses:
@@ -47,7 +46,6 @@ paths:
                 type: array
                 items:
                   type: object
-  /figma-pages/{fileKey}/{pageId}:
     get:
       summary: Retrieve the pages of a specific Figma file
       parameters:

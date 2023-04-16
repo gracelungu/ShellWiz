@@ -52,14 +52,12 @@ Execute a terminal command and receive the results.
 - `stdout`: The standard output of the executed command.
 - `stderr`: The standard error output of the executed command.
 
-### GET /figma-files
 
 Retrieve a list of Figma files.
 
 - Response:
 - An array of Figma files.
 
-### GET /figma-pages/{fileKey}/{pageId}
 
 Retrieve the pages of a specific Figma file.
 
