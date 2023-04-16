@@ -1,4 +1,22 @@
-FROM node:14
+FROM node:14-alpine AS build
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm ci
+
+# Copy the rest of the application code
+COPY . .
+
+# Compile TypeScript to JavaScript (if applicable)
+RUN npm run build
+
+# Start a new stage for the runtime image
+FROM node:14-alpine
 
 # Create a non-root user with sudo privileges
 RUN useradd -m apiuser && \
@@ -8,14 +26,8 @@ RUN useradd -m apiuser && \
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install app dependencies
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
+# Copy the build output from the previous stage
+COPY --from=build /app/dist /app
 
 # Change ownership of the /app directory to the non-root user
 RUN chown -R apiuser:apiuser /app
