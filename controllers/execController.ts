@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { exec } from "child_process";
+import { execFile } from "child_process";
 
 // Type definition for the request body of the /exec endpoint
 interface ExecRequestBody {
@@ -10,8 +10,8 @@ interface ExecRequestBody {
 export const executeCommand = (req: Request, res: Response) => {
   const { command } = req.body as ExecRequestBody;
   const workingDir = process.env.WORKING_DIR || ".";
-  const fullCommand = `cd ${workingDir} && ${command}`;
-  exec(fullCommand, (error: unknown, stdout: string, stderr: string) => {
+  const shellScript = `/path/to/shell/script.sh`;
+  execFile(shellScript, [command], { cwd: workingDir }, (error: unknown, stdout: string, stderr: string) => {
     if (error) {
       console.error(`exec error: ${error}`);
       // Send the full error message along with stderr
